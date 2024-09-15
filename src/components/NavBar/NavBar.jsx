@@ -40,7 +40,8 @@ import {
               </MenuButton>
               <MenuList height={'300px'} overflowY={'scroll'}>
                 {category.map((category) => (
-                  <MenuItem key={category.slug}><Link to={`/category/${category.slug}`}>{category.name}</Link></MenuItem>
+                  <MenuItem key={category.slug}><Link to={`/category/${category.slug}`}>{category.name}</Link>
+                  </MenuItem>
                 ))}
               </MenuList>
             </Menu>

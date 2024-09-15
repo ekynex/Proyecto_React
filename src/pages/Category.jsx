@@ -9,6 +9,6 @@ export const Category = () => {
     const { products } = useProductsByCategory(categoryId)
 
   return (
-    <ItemListContainer products={[products]}/>
+    <ItemListContainer products={products}/>
   )
 }
