@@ -17,12 +17,13 @@ import {
   import { CarWidget } from "../CarWidget";  
   import { Link } from "react-router-dom";
   import pudge from '../../assets/pudge.png'
-  import { useCategory } from '../../hooks';
+  import { useItemsCollection } from '../../hooks';
+  /* import { createProductsFirestore } from "../../helpers"; */
   
   export const NavBar = () => {
     const { colorMode, toggleColorMode } = useColorMode();
   
-    const { category  } = useCategory();
+    const { items } = useItemsCollection("categories");
   
     return (
       <>
@@ -33,19 +34,20 @@ import {
                     <img src={pudge} alt="logo en el navbar" width={"90px"}/>
                 </Link>
             </Box>
-            <Box alignContent={"flex-start"} width={"100%"} marginLeft={30}>
-            <Menu>
+            <Box alignContent={"center"} justifyContent={"space-between"} width={"80%"} marginLeft={30}>
+              <Menu>
               <MenuButton as={Link} cursor="pointer" style={{marginLeft: 30}}>
                 Categorias
               </MenuButton>
-              <MenuList height={'300px'} overflowY={'scroll'}>
-                {category.map((category) => (
+              <MenuList height={'fit-content'} overflowY={'scroll'}>
+                {items.map((category) => (
                   <MenuItem key={category.slug}><Link to={`/category/${category.slug}`}>{category.name}</Link>
                   </MenuItem>
                 ))}
               </MenuList>
-            </Menu>
-            </Box>
+              </Menu>
+              {/* <Button marginLeft={30} onClick={() => createProductsFirestore('products')}>Crear productos</Button> */}
+            </Box>            
             <Flex alignItems={"center"}>
               <Stack direction={"row"} spacing={7}>
                 <CarWidget />

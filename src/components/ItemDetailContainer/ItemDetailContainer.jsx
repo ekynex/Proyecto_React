@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import {
   Box,
   Container,
@@ -13,24 +13,37 @@ import {
   StackDivider,
   useColorModeValue,
 } from "@chakra-ui/react";
+import { CartContext } from "../../context";
+
+
+
 export const ItemDetailContainer = ({ product }) => {
   const [showCount, setShowCount] = useState(false);
   const [count, setCount] = useState(0);
  
+  const { addItem, removeItem } = useContext(CartContext);
+
   const handleShowCount = () => {
     setShowCount(!showCount);
   };
- 
+
   const handleIncrement = () => {
-    setCount(count + 1);
-  };
- 
-  const handleDecrement = () => {
-    if (count > 0) {
-      setCount(count - 1);
+    if (count < product.stock) {
+      const newCount = count + 1;
+      setCount(newCount);
+      addItem(product, newCount);
     }
   };
- 
+
+  const handleDecrement = () => {
+    if (count > 0) {
+      const newCount = count - 1;
+      setCount(newCount);
+      removeItem(product);
+    }
+  };  
+  
+   
   return (
     <Container maxW={"7xl"}>
       <SimpleGrid

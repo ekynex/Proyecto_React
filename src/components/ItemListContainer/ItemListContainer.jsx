@@ -15,6 +15,11 @@ import { Link } from "react-router-dom";
 
 
 export const ItemListContainer = ({ products }) => {
+
+  //clase 14 - Firebase II
+  //const categories = products.map((product) => product.category);
+  //const uniqueCategories = [...new Set(categories)]; //Te muestras las categorias sin repetir.
+
   return (
     <Box display={"flex"} flexWrap={"wrap"}>
       {products.map((product) => (
@@ -35,10 +40,7 @@ export const ItemListContainer = ({ products }) => {
           </CardBody>
           <Divider />
           <CardFooter>
-            <ButtonGroup spacing="2">
-              {/* <Button variant="ghost" colorScheme="blue">
-                Add to cart
-              </Button> */}
+            <ButtonGroup spacing="2">              
               <Link to={`/item/${product.id}`}>Ir a Detalle</Link>
             </ButtonGroup>
           </CardFooter>
